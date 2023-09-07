@@ -159,3 +159,10 @@ rules:
     danger: 10
     kind:
       - 'select'
+  - id: 20
+    name: sql
+    description: 接受用户输入参数
+    type: regex
+    danger: 10
+    kind:
+      - '$_GET'
