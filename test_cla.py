@@ -34,18 +34,32 @@ class CodeScannerpy:
         #         matched_data = self.match_rules(node_str, python_file)
         #         self.save_matched_data(matched_data)
 
-    def match_rules(self, node, python_file):
+    def match_rules(self, node, python_file,line_number):
         matched_data = []
 
         for rule in self.rules:
             if rule['type'] == 'regex':
                 for pattern in rule['patterns']:
                     if re.search(pattern, node):
+                        try:
+                            with open(python_file, 'r',encoding='utf-8') as f:
+                                lines = f.readlines()
+                                if line_number <= len(lines):
+                                    theline=lines[line_number - 1]
+                                else:
+                                    print(f"The file has less than {line_number} lines")
+                                    theline=f"The file has less than {line_number} lines"
+                        except FileNotFoundError:
+                            theline="The file was not found"
+                            print("The file was not found")
+                        except IndexError:
+                            theline = "Invalid line number"
+                            print("Invalid line number")
                         matched_item = {
                             "ID": str(self.match_count),
                             "文件路径": python_file,
-                            "漏洞描述": rule['name'],
-                            "漏洞详细": rule['description']
+                            "漏洞描述": rule['description'],
+                            "漏洞详细": '第'+str(line_number)+'行:'+theline#rule['description']
                         }
                         matched_data.append(matched_item)
                         self.match_count += 1
@@ -83,7 +97,8 @@ class CodeScannerpy:
                     for node in ast.walk(python_ast):
                         if isinstance(node, ast.Call):
                             node_str = ast.dump(node)
-                            matched_data = self.match_rules(node_str, python_file)
+                            line_number = node.lineno = node.lineno
+                            matched_data = self.match_rules(node_str, python_file,line_number)
                             self.save_matched_data(matched_data)
 
 

