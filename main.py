@@ -315,7 +315,7 @@ def setup_progress_bar(root, progress_frame, footer_label):
     progress_bar.start(21)
 
     # 在3秒后停止进度条的动画并隐藏进度条
-    root.after(3000, stop_progress_bar)
+    root.after(1000, stop_progress_bar)
 
 
 # 定义双击事件处理函数

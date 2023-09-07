@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import scrolledtext, messagebox
 
 # KEY
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 
 url = "https://api.openai.com/v1/chat/completions"
 headers = {

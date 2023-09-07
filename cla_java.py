@@ -64,7 +64,7 @@ class CodeScannerjava:
             json.dump(existing_data, json_file, ensure_ascii=False, indent=4)
 
     def scan_folder(self, folder_path):
-        # 遍历文件夹中的所有 .py 文件
+        # 遍历文件夹中的所有 .java 文件
         for root, _, files in os.walk(folder_path):
             for file in files:
                 if file.endswith('.java'):

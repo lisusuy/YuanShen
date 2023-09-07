@@ -18,14 +18,14 @@ rules:
 #      - exec
 #      - Runtime
   - id: 3
-    name: pickle
+    name: os.system
     description: pickle反序列化
     type: regex
     danger: 1
     patterns:
       - "pickle.loads"
   - id: 4
-    name: subprocess.call
+    name: os.system
     description: 执行系统命令
     type: regex
     danger: 10
