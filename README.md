@@ -19,3 +19,7 @@
 将本项目git clone 到本地
 
 ` python main.py `  即可
+
+界面展示：
+![替代文本](https://img1.imgtp.com/2023/09/07/22iWnQ52.png)
+
