@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import scrolledtext, messagebox
 
 # KEY
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 
 url = "https://api.openai.com/v1/chat/completions"
 headers = {
@@ -33,8 +33,11 @@ def chat_with_gpt():
             "temperature": 0.3  # 设置较低的温度值以获得更具体的答案
         }
     try:
+        # print("here")
         response = requests.post(url, headers=headers, json=data)
+        # print(response)
         response_json = response.json()
+        print("response" , response_json)
         reply = response_json['choices'][0]['message']['content'].strip()
         print(reply)
     #     # 将用户输入和ChatGPT的回复显示在文本框中
