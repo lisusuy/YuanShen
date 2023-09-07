@@ -152,3 +152,10 @@ rules:
     danger: 10
     kind:
       - 'is_numeric()'
+  - id: 20
+    name: sql
+    description: 仅用次判断而不转换可能插入16进制字符串进而导致SQL二次注入
+    type: regex
+    danger: 10
+    kind:
+      - 'select'

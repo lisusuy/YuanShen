@@ -19,22 +19,7 @@ class CodeScannerjava:
             rules = data.get('rules')
         return rules
 
-    # def apply_rules(self, python_file):
-    #     try:
-    #         with open(python_file, 'r', encoding='utf-8') as file:
-    #             python_code = file.read()
-    #     except FileNotFoundError:
-    #         python_code = "文件未找到"
-    #     except Exception as e:
-    #         python_code = f"发生了一个错误: {e}"
-    #
-    #     python_ast = ast.parse(python_code)
 
-        # for node in ast.walk(python_ast):
-        #     if isinstance(node, ast.Call):
-        #         node_str = ast.dump(node)
-        #         matched_data = self.match_rules(node_str, python_file)
-        #         self.save_matched_data(matched_data)
 
     def match_rules(self, node, python_file):
         matched_data = []

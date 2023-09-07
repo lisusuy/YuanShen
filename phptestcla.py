@@ -16,21 +16,34 @@ class PHPCodeScanner:
             rules = data.get('rules')
         return rules
 
-    def apply_rules(self, node):
+    def apply_rules(self, node,file):
         matched_data = []
         for rule in self.rules:
             if rule['type'] == 'regex':
                 for pattern in rule['kind']:
                     if re.search(pattern, node):
+                        #print(node)
+                        i=int(node[-2])
+                        try:
+                            with open(file, 'r',encoding='utf-8') as f:
+                                lines = f.readlines()
+                                if i <= len(lines):
+                                    print(lines[i - 1])  # 索引从0开始，所以我们使用 i - 1
+                                else:
+                                    print(f"The file has less than {i} lines")
+                        except FileNotFoundError:
+                            print("The file was not found")
+                        except IndexError:
+                            print("Invalid line number")
                         matched_item = {
                             "ID": str(self.match_count),
-                            "文件路径": "文件路径信息",  # 你需要提供文件路径信息
-                            "漏洞描述": rule['name'],
-                            "漏洞详细": rule['description']
+                            "文件路径": file , # 你需要提供文件路径信息
+                            "漏洞描述": rule['description'],
+                            "漏洞详细": '第'+node[-2]+'行：'+lines[i - 1]
                         }
                         matched_data.append(matched_item)
                         self.match_count += 1
-                        print(matched_item)
+                        #print(matched_item)
         return matched_data
 
     def save_matched_data(self, matched_data):
@@ -52,11 +65,14 @@ class PHPCodeScanner:
             for file in files:
                 if file.endswith('.php'):
                     file_path = os.path.join(root, file)
-                    result = subprocess.run(['node', './php.js'], stdout=subprocess.PIPE, text=True, input=file_path)
+                    result = subprocess.run(['node', './php.js'], stdout=subprocess.PIPE, text=True, input=file_path,encoding='utf-8')
                     ast_test = result.stdout
                     ast_tree = json.loads(ast_test)
+
                     for child in ast_tree:
-                        matched_data = self.apply_rules(str(child))
+                        # php_code = ''.join(token[1] for token in child)
+                        #print(child)
+                        matched_data = self.apply_rules(str(child),file_path)
                         self.save_matched_data(matched_data)
 
 # 使用示例

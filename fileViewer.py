@@ -17,6 +17,7 @@ def open_file_and_read(file_path, text_box):
 # 函数用于根据文件扩展名判断文件类型并返回内容
 def read_supported_file(file_path):
     file_extension = file_path.split('.')[-1].lower()
+    # print(file_extension)
 
     if file_extension == 'java':
         return read_file(file_path)
@@ -24,20 +25,20 @@ def read_supported_file(file_path):
         return read_file(file_path)
     elif file_extension == 'go':
         return read_file(file_path)
-    elif file_extension == 'c':
+    elif file_extension == 'php':
         return read_file(file_path)
     elif file_extension == 'yml' or file_extension == 'yaml':
         return read_file(file_path)
     elif file_extension == 'txt':
         return read_file(file_path)
-    elif file_extension == 'docx':
-        return read_file(file_path)
+    # elif file_extension == 'docx':
+    #     return read_file(file_path)
     else:
         return "不支持的文件类型"
 
 # 函数用于读取文件内容
 def read_file(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
         return file.read()
 
 def create_file_viewer(root, file_path):

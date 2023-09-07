@@ -189,9 +189,9 @@ file_menu.pack(expand='yes', fill='both')
 
 # 创建按钮并将它们放入按钮容器中，使用grid布局
 button_file = tk.Button(button_frame, text="打开文件", relief="flat", command=lambda: fileMenu.upload_file(file_menu))
-button_config = tk.Button(button_frame, text="扫描配置", relief="flat", command=lambda: fileViewer.create_file_viewer(root, "main.py"))
-button_tips = tk.Button(button_frame, text="审计技巧", relief="flat", command=lambda: fileViewer.create_file_viewer(root, "main.py"))
-button_help = tk.Button(button_frame, text="软件帮助", relief="flat", command=lambda: fileViewer.create_file_viewer(root, "关于我们.docx"))
+button_config = tk.Button(button_frame, text="扫描配置", relief="flat", command=lambda: fileViewer.create_file_viewer(root, "java_rules.yml"))
+button_tips = tk.Button(button_frame, text="审计技巧", relief="flat", command=lambda: fileViewer.create_file_viewer(root, "java_rules.yml"))
+button_help = tk.Button(button_frame, text="软件帮助", relief="flat", command=lambda: fileViewer.create_file_viewer(root, "关于我们.txt"))
 
 button_file.grid(row=0, column=0, padx=10)
 button_config.grid(row=0, column=1, padx=10)

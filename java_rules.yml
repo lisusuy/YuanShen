@@ -3,7 +3,7 @@
 rules:
   - id: 1
     name: 命令执行
-    description: 执行系统命令可能会出现
+    description: 可能会出现执行系统命令
     type: ast
     danger: 9
     ptype: 后门

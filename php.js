@@ -15,16 +15,13 @@ const parser = new engine({
   },
 });
 
-// Retrieve the AST from the specified source
-//const eval = parser.parseEval('echo "Hello World";');
-
-// Retrieve an array of tokens (same as php function token_get_all)
-const tokens = parser.tokenGetAll('<?php echo "Hello World";');
-
-// Load a static file (Note: this file should exist on your computer)
-//const phpFile = fs.readFileSync("./example.php");
-
-// Log out results
-console.log("Eval parse:", eval);
-console.log("Tokens parse:", tokens);
-// console.log("Filnodee parse:", parser.parseCode(phpFile));
+process.stdin.on('data', function(data) {
+    const filePath = data.toString().trim();
+    if (fs.existsSync(filePath)) {
+        const phpFileContent = fs.readFileSync(filePath, "utf8");
+        const tokens = parser.tokenGetAll(phpFileContent);
+        console.log(JSON.stringify(tokens));
+    } else {
+        console.log("File not found");
+    }
+});
