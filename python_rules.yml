@@ -42,7 +42,7 @@ rules:
       - 'subprocess.Popen'
   - id: 6
     name: os.popen
-    description: 执行系统命令
+    description: 可能存在远程代码执行
     type: regex
     danger: 10
     # weight: 0.1
@@ -50,7 +50,7 @@ rules:
       - 'os.popen'
   - id: 7
     name: subprocess.run
-    description: 执行系统命令
+    description: 可能存在远程代码执行
     type: regex
     danger: 10
     # weight: 0.1
@@ -74,7 +74,7 @@ rules:
       - 'eval'
   - id: 10
     name: exec
-    description: 执行系统命令
+    description: 可能存在远程代码执行
     type: regex
     danger: 10
     # weight: 0.1
@@ -90,7 +90,7 @@ rules:
       - 'compile'
   - id: 12
     name: execfile
-    description: 执行系统命令
+    description: 可能存在远程代码执行
     type: regex
     danger: 10
     # weight: 0.1
@@ -104,6 +104,42 @@ rules:
     # weight: 0.1
     patterns:
       - 'getoutput'
+  - id: 14
+    name: sql_injection
+    description: 潜在的SQL注入
+    type: regex
+    danger: 8
+    patterns:
+      - 'SELECT'
+  - id: 15
+    name: sql_injection
+    description: 潜在的SQL注入
+    type: regex
+    danger: 8
+    patterns:
+      - r".*(SELECT|INSERT|UPDATE|DELETE|UNION|FROM|WHERE|DROP|EXEC).*\b(AND|OR)\s+.*=.*"
+  - id: 16
+    name: sql_injection
+    description: 潜在的SQL注入
+    type: regex
+    danger: 8
+    patterns:
+      - 'query'
+  - id: 17  # 请根据您的需求分配一个唯一的ID
+    name: xss_detection
+    description: 潜在的XSS漏洞
+    type: regex
+    danger: 8
+    patterns:
+      - 'render_template'
+  - id: 18  # 请根据您的需求分配一个唯一的ID
+    name: xss_detection
+    description: 可能存在模板注入
+    type: regex
+    danger: 8
+    patterns:
+      - 'render_template'
+
 
 #  - id: 3
 #    name: test2
