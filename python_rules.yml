@@ -2,7 +2,7 @@ language: py
 
 rules:
   - id: 1
-    name: os
+    name: {}
     description: 执行系统命令
     type: regex
     danger: 10

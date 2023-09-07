@@ -41,6 +41,7 @@ class CodeScannerpy:
             if rule['type'] == 'regex':
                 for pattern in rule['patterns']:
                     if re.search(pattern, node):
+                        # if re.search(name,node)
                         try:
                             with open(python_file, 'r',encoding='utf-8') as f:
                                 lines = f.readlines()

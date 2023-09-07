@@ -17,4 +17,5 @@
 
 ### 使用方法
 将本项目git clone 到本地
-` python main.py ` 
+
+` python main.py `  即可
